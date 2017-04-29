@@ -363,4 +363,38 @@ function makeChange(change, coinsAvail) {
   return changeInCoins;
 }
 
-console.log(makeChange(15, [10, 5, 1]));
+// console.log(makeChange(15, [10, 5, 1]));
+
+
+// Recursive makeChange
+// To implement recursive makeChange, I will not have to use for or
+// while loops - all I will have to do is create a condition that checks
+// to see if the first coin in the coins array is less than the change remaining
+// if it is less than, I will decrement change by that amount and call makeChange
+// with the updates amount and the coins list. If the first coin is not longer
+// smaller than the amount remaining, I will slice the first coin from the conis list
+// and call the function with that update list aswell.
+// 0. recMakeChange takes in required change, the coins returned thus far, and the coins list
+// 1. if statement will check to see if change is > than coins[0]
+//    if true - decrement change by coins[0] and call recMakeChange with change and coins
+// 2. if change is < coins[0], call recMakeChange with change and coins.slice(1)
+// 3. base case will be return coinsReturned if change required === 0
+
+function recMakeChange(change, coinsThusFar, coins) {
+  if (change === 0){
+    return coinsThusFar;
+  }
+
+  if (change >= coins[0]){
+    // console.log('hello');
+    coinsThusFar.push(coins[0]);
+    change -= coins[0];
+    // console.log(change);
+    recMakeChange(change, coinsThusFar, coins);
+  } else {
+    recMakeChange(change, coinsThusFar, coins.slice(1));
+  }
+  return coinsThusFar;
+}
+
+console.log(recMakeChange(21, [], [10, 5, 1]));
