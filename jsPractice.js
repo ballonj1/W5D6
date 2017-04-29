@@ -315,10 +315,52 @@ Array.prototype.subsets = function(){
   return otherSubs.concat(subs);
 };
 
-console.log([1,2,3].subsets());
+// console.log([1,2,3].subsets());
+
 // [1,2]
 // [1]
 //[[]]
 //[[1]] + [[]]
 //[[1],[]]
 //[[1,2], [2]] + [[], [1]]
+
+
+// Make change
+// - will take two arguments.. The first being the amount of change to receive
+//   the second argument is an array of the possible coins
+// First I will try to solve this problem iteratively by creating a new array to
+// hold the coins used to fulfill the requirement
+// I will continue to take a coin of a particular value until that coin
+// is larger than the amount of change remaining - at which point I will
+// move on to the next coin until the value is once again less than or equal to
+// the remaining amount
+//   req - there are an unlimited amount of coins available from the array at each value
+//       = there will always be 1 cent coins.
+// 0. store the amount of change required in a variable
+//   0a. create a variable pointing to an empty array called changeInCoins
+//       this will hold the coins will be returned to the client.
+// 1. use a for loop to select the first coin in the coins array
+// 2. check to see if the coin is less than the amount of change remaining
+// 3. if it is smaller - begin a loop that adds the coin to a new array once and
+//    decrements the value of the coin from the remaining change
+// 4. When the coin is larger than the remaining change, increment i
+// 5. continue this process until the amount of remaining change === 0
+// 6. return the changeInCoins array
+
+function makeChange(change, coinsAvail) {
+  let changeRemaining = change;
+  let changeInCoins = [];
+
+  for(let i = 0; i < coinsAvail.length; i++){
+    if(coinsAvail[i] <= changeRemaining){
+      while(coinsAvail[i] <= changeRemaining){
+        changeInCoins.push(coinsAvail[i]);
+        changeRemaining -= coinsAvail[i];
+      }
+    }
+  }
+
+  return changeInCoins;
+}
+
+console.log(makeChange(15, [10, 5, 1]));
