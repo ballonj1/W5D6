@@ -69,7 +69,7 @@ function isEven(x) {
   }
 }
 
-console.log([1,2,3,4,5,6].mySelect(isEven));
+// console.log([1,2,3,4,5,6].mySelect(isEven));
 
 Array.prototype.myReject = function(cb){
   let myReject = [];
@@ -82,7 +82,7 @@ Array.prototype.myReject = function(cb){
   return myReject;
 };
 
-console.log([1,2,3,4,5,6].myReject(isEven));
+// console.log([1,2,3,4,5,6].myReject(isEven));
 
 Array.prototype.myUniq = function() {
   let uniq = [];
@@ -94,7 +94,7 @@ Array.prototype.myUniq = function() {
   return uniq;
 };
 
-console.log([1,1,1,2,3,3,3,4,5,6,6].myUniq());
+// console.log([1,1,1,2,3,3,3,4,5,6,6].myUniq());
 
 Array.prototype.twoSum = function() {
   let indexPairs = [];
@@ -108,7 +108,7 @@ Array.prototype.twoSum = function() {
   return indexPairs;
 };
 
-console.log([1,2,3,4,0,-4,-3].twoSum());
+// console.log([1,2,3,4,0,-4,-3].twoSum());
 
 // 0. pass in accumulator - Can get to the point where if accumulator is not passed - can use first element
 //   0a. will also take a callback function
@@ -125,7 +125,7 @@ Array.prototype.myInject = function(cb) {
   return accum;
 };
 
-console.log([1,2,3].myInject(multByTwo));
+// console.log([1,2,3].myInject(multByTwo));
 
 
 // Transpose - we have a sq matrix
@@ -148,7 +148,7 @@ const myTranspose = function(arr) {
   return transposed;
 };
 
-console.log(myTranspose([ [1, 5], [2, 6], [3, 7], [4, 8] ]));
+// console.log(myTranspose([ [1, 5], [2, 6], [3, 7], [4, 8] ]));
 
 // Bubblesort
 //  We will move through the array two elements at a time
@@ -184,4 +184,53 @@ function xGreater(x, y) {
   }
 }
 
-console.log([2,6,4,1,4,8,9].bubbleSort(xGreater));
+// console.log([2,6,4,1,4,8,9].bubbleSort(xGreater));
+
+
+
+// Create a new function on the Array prototype
+// We will need a base case that returns [this] if this.lenght <= 1
+// this is necessary because merge sort will split the array until
+// it reaches this base case.
+// Once the base case is reached, the left and right halves will be
+// input into a merge function that will examine the values passed in
+// and sort them -- returning a merged array once either the left or right
+// array is empty.
+// 0. Set base case to return [] if this.length === 0
+//   0a. Set base case to return this if this.length === 1
+// 1. Split the array in half by dividing length by 2 - remember JS uses FP nums
+// 2. Merge sort each half
+//  2a. This will put frames on the call stack until a base case is reached
+// 3. Merge the left and right sides
+// 4. Return the merged Array
+
+Array.prototype.myMergeSort = function() {
+  if (this.length === 0){
+    return [];
+  } else if (this.length === 1){
+    return this;
+  }
+
+  let mid = Math.floor(this.length / 2);
+  let leftHalf = this.slice(0, mid);
+  let rightHalf = this.slice(mid);
+
+  let sortedLeft = leftHalf.myMergeSort();
+  let sortedRight = rightHalf.myMergeSort();
+
+  return merge(sortedLeft, sortedRight);
+};
+
+function merge(left, right) {
+  let merged = [];
+  while (left.length >= 1 && right.length >= 1){
+    if (left[0] < right[0]){
+      merged.push(left.shift());
+    } else {
+      merged.push(right.shift());
+    }
+  }
+  return merged.concat(left).concat(right);
+}
+
+console.log([3,6,5,7].myMergeSort());
