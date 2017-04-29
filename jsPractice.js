@@ -411,7 +411,7 @@ Array.prototype.countOfCondition = function(cb) {
   return count;
 };
 
-console.log([1,2,3,4].countOfCondition(isEven));
+// console.log([1,2,3,4].countOfCondition(isEven));
 
 Array.prototype.include = function(el) {
   let doesInclude = false;
@@ -424,4 +424,4 @@ Array.prototype.include = function(el) {
   return doesInclude;
 };
 
-console.log([1,2,3].include(5));
+// console.log([1,2,3].include(5));
