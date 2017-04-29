@@ -285,3 +285,40 @@ Array.prototype.binarySearch = function(target) {
 };
 
 console.log([1,2,3,4,5].binarySearch(12));
+
+
+// Implement subsets
+// For the array [1, 2, 3] there are two types of subets
+// - those that contain 3, and those that do not.
+// Take subsets of numbers without the last number.
+// Map over the resulting values and add back the number that was removed.
+// Add the resulting nested array to the pre-mapped subsets.
+// 0. Will define on Array Prototype
+// 1. Base case - return [[]] if this[0].length === 0
+// 2. Find subsets of this with last element removed
+// 3. map over the resulting subsets and add back the last element
+// 4. Add back the subsets with the item removed
+
+Array.prototype.subsets = function(){
+  if(this.length === 0){
+    return [[]];
+  }
+
+  let el = this[0];
+  let subs = this.slice(1).subsets();
+
+  let otherSubs = subs.map(function(arr){
+    let arrCopy = Object.assign([], arr);
+    arrCopy.push(el);
+    return arrCopy;
+  });
+  return otherSubs.concat(subs);
+};
+
+console.log([1,2,3].subsets());
+// [1,2]
+// [1]
+//[[]]
+//[[1]] + [[]]
+//[[1],[]]
+//[[1,2], [2]] + [[], [1]]
