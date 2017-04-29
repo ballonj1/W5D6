@@ -160,5 +160,28 @@ console.log(myTranspose([ [1, 5], [2, 6], [3, 7], [4, 8] ]));
 //      sorted is false, we will need to loop through again - passing the updated array
 
 Array.prototype.bubbleSort = function(cb){
+  let sorted = true;
+  for(let i = 0; i < this.length - 1; i++){
+    if (cb(this[i], this[i + 1])){
+      let temp = this[i];
+      this[i] = this[i + 1];
+      this[i + 1] = temp;
+      sorted = false;
+    }
+  }
 
+  if(!sorted){
+    this.bubbleSort(cb);
+  }
+  return this;
 };
+
+function xGreater(x, y) {
+  if (x > y){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+console.log([2,6,4,1,4,8,9].bubbleSort(xGreater));
