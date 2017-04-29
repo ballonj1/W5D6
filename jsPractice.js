@@ -397,4 +397,31 @@ function recMakeChange(change, coinsThusFar, coins) {
   return coinsThusFar;
 }
 
-console.log(recMakeChange(21, [], [10, 5, 1]));
+// console.log(recMakeChange(21, [], [10, 5, 1]));
+
+
+Array.prototype.countOfCondition = function(cb) {
+  let count = 0;
+  this.myEach(function(el) {
+    if (cb(el)) {
+      count += 1;
+    }
+  });
+
+  return count;
+};
+
+console.log([1,2,3,4].countOfCondition(isEven));
+
+Array.prototype.include = function(el) {
+  let doesInclude = false;
+  this.forEach(function(x){
+    if (x === el){
+      doesInclude = true;
+    }
+  });
+
+  return doesInclude;
+};
+
+console.log([1,2,3].include(5));
