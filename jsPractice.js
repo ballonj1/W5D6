@@ -233,4 +233,55 @@ function merge(left, right) {
   return merged.concat(left).concat(right);
 }
 
-console.log([3,6,5,7].myMergeSort());
+// console.log([3,6,5,7].myMergeSort());
+
+// Binary Search
+// Takes in a target value to search for in the array
+// Split the array into two pieces - removing the middle element
+// and comparing it to the target.
+// If the target element is less than the middle -- Perform binary search
+// on the left side -- If it is greater, perform BS on the right
+// Return the index of the element if the middle el matches the target
+// If a binary search is performed on the right side, add mid + 1 to the index of the el
+// This is to account for the fact that the length of the original array has been reduced to
+// properly search
+// 0. Implement base case - return mid if this[mid] === target
+// 1. Find middle index (remember FP)
+// 2. split this one before and one after index -- yielding the middle el
+//   make comparison between the middle index and the target
+// 3. depending on result of comparison - BS right or left half
+// 4. If b searching left half return mid if obj is found
+//    - if right half, return mid + i + 1
+//          [1,2,3,4,| 5 |,6,7,8,9]  => 8 target
+//              i === (4  +    2  + 1) === 7
+//    - return null if the item was not found
+
+Array.prototype.binarySearch = function(target) {
+  let midI = Math.floor(this.length / 2);
+  // console.log(midI);
+  // console.log(this);
+  let midNum = this[midI];
+  // console.log(midNum);
+  if(target === midNum){
+    // console.log('I made it');
+    return midI;
+  } else if(this.length <= 1 && midNum !== target) {
+    return null;
+  }
+
+  let leftHalf = this.slice(0, midI);
+  let rightHalf = this.slice(midI + 1);
+
+  if(target < midNum) {
+    return leftHalf.binarySearch(target);
+  } else {
+    if (rightHalf.binarySearch(target) !== null){
+      return midI + rightHalf.binarySearch(target) + 1;
+    } else {
+      // console.log(this);
+      return null;
+    }
+  }
+};
+
+console.log([1,2,3,4,5].binarySearch(12));
