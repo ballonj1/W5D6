@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>John Ballon Recipe</title>
+    <meta charset='UTF-8' name="Chicken Cacciatore" content="Cacciatore means 'hunter' in Italian. In cuisine, alla cacciatora refers to a meal prepared 'hunter-style' with onions, herbs, usually tomatoes, often bell peppers, and sometimes wine.">
+    <link rel="stylesheet" href="css_reset.css" type="text/css"/>
+    <link rel="stylesheet" href="css_syntax.css" type="text/css">
+    <script src="external_javascript_example.js" type="text/javascript"></script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-12345678-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+    </head>
+
+    <body>
+      <header>
+        <img src="https://p5.zdassets.com/hc/settings_assets/949671/200252358/ytySguzPxy92CMwTwD4fxg-logo-emblem-red.png" alt="App Academy">
+
+        <nav>
+          <ul>
+            <li><a href="#description">Description</a></li>
+            <li><a href="#ingredients">Ingredients</a></li>
+            <li><a href="#directions">Directions</a></li>
+          </ul>
+        </nav>
+
+      </header>
+
+        <h2>Chicken Cacciatore</h2>
+
+        <section>
+          <a name="description"/>
+          <h2>Description</h2>
+          <p>Cacciatore means "hunter" in Italian. In cuisine, alla cacciatora refers to a meal prepared "hunter-style" with onions, herbs, usually tomatoes, often bell peppers, and sometimes wine.
+          </p>
+
+          <figure>
+            <img src="http://www.seriouseats.com/recipes/assets_c/2016/09/20160922-chicken-cacciatore-vicky-wasik-16-thumb-1500xauto-434333.jpg" alt="Chicken Cacciatore">
+          </figure>
+
+          <figurecap>
+            <a href="https://en.wikipedia.org/wiki/Cacciatore"></a>
+          </figurecap>
+
+          <aside>
+            <a name="ingredients">
+            <h2>Ingredients</h2>
+            <ul class="ingredients-list">
+              <li>4 chicken thighs</li>
+              <li>2 chicken breasts with skin and backbone, halved crosswise</li>
+              <li>2 teaspoons salt, plus more to taste</li>
+              <li>1 teaspoon freshly ground black pepper,   plus more to taste</li>
+              <li>1/2 cup all purpose flour, for dredging</li>
+              <li>3 tablespoons olive oil</li>
+              <li>1 large red bell pepper, chopped</li>
+              <li>1 onion, chopped</li>
+              <li>3 garlic cloves, finely chopped</li>
+              <li>3/4 cup dry white wine</li>
+              <li>1 ( 28-ounce) can diced tomatoes with juice</li>
+              <li>3/4 cup reduced-sodium chicken broth</li>
+              <li>3 tablespoons drained capers</li>
+              <li>1 1/2 teaspoons dried oregano leaves</li>
+              <li>1/4 cup coarsely chopped fresh basil leaves</li>
+            </ul>
+          </aside>
+
+
+        <a name="directions"/>
+        <h2>Directions</h2>
+        <ol class="directions-list">
+          <li>Sprinkle the chicken pieces with 1 teaspoon of each salt and pepper. </li>
+          <li>Dredge the chicken pieces in the flour to coat lightly.</li>
+          <li>In a large heavy saute pan, heat the oil over a medium-high flame.</li>
+          <li>Add the chicken pieces to the pan and saute just until brown, about 5 minutes per side.</li>
+          <li>If all the chicken does not fit in the pan, saute it in 2 batches. Transfer the chicken to a plate and set aside.</li>
+          <li>Add the bell pepper, onion and garlic to the same pan and saute over medium heat until the onion is tender, about 5 minutes.</li>
+          <li>Season with salt and pepper. Add the wine and simmer until reduced by half, about 3 minutes.</li>
+          <li>Add the tomatoes with their juice, broth, capers and oregano. </li>
+          <li>Return the chicken pieces to the pan and turn them to coat in the sauce. </li>
+          <li>Bring the sauce to a simmer. Continue simmering over medium-low heat until the chicken is just cooked through, about 30 minutes for the breast pieces, and 20 minutes for the thighs.</li>
+          <li>Using tongs, transfer the chicken to a platter. If necessary, boil the sauce until it thickens slightly, about 3 minutes.</li>
+          <li>Spoon off any excess fat from atop the sauce. Spoon the sauce over the chicken, then sprinkle with the basil and serve.</li>
+        </ol>
+      </section>
+
+      <section id="reviews">
+  <h2>Reviews</h2>
+    <form id="review-form" action="/reviews" method="post">
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name">
+
+      <label for="rating">Rating</label>
+      1<input type="radio" name="rating" value="1" checked>
+      2<input type="radio" name="rating" value="2">
+      3<input type="radio" name="rating" value="3">
+      4<input type="radio" name="rating" value="4">
+      5<input type="radio" name="rating" value="5">
+
+      <label for="expertise">Cooking Expertise</label>
+
+      <select id="expertise" name="expertise">
+        <option value="Select Cooking Expertise" disabled="true" selected="true">Select Cooking Experise</option>
+
+        <option value="Sometimes Cook">Sometimes Cook</option>
+
+        <option value="Cook Everyday">Cook Everyday</option>
+
+        <option value="Cooking is a Hobby">Cooking is a Hobby</option>
+
+        <option value="Professional Chef">Professional Chef</option>
+      </select>
+
+      <label>Review
+        <textarea id="review" name="review" cols="30" rows="10"></textarea>
+      </label>
+
+      <input type="submit" value="Submit Review">
+    </form>
+</section>
+
+    <footer>
+      <p>
+        Original Recipe by Giada De Laurentiis at
+        <a href="http://www.foodnetwork.com/recipes/giada-de-laurentiis/chicken-cacciatore-recipe">Food Network</a>
+      </p>
+    </footer>
+    </body>
+</html>
