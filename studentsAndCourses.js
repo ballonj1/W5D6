@@ -9,6 +9,12 @@ Student.prototype.name = function(){
 };
 
 Student.prototype.enroll = function(course){
+  this.courses.forEach(enrolledCourse => {
+    //raise error if enrolledCourse conflicts with course
+    if (enrolledCourse.conflictsWith(course)){
+      throw "There's a conflict.";
+    }
+  });
   if(!this.courses.includes(course)){
     this.courses.push(course);
     course.students.push(this);
@@ -28,10 +34,12 @@ Student.prototype.courseLoad = function() {
   return load;
 };
 
-function Course(name, department, credits){
+function Course(name, department, credits, days, timeBlock){
   this.name = name;
   this.department = department;
   this.credits = credits;
+  this.days = days;
+  this.timeBlock = timeBlock;
   this.students = [];
 }
 
@@ -39,13 +47,22 @@ Course.prototype.addStudent = function(student){
   student.enroll(this);
 };
 
-const amy = new Student("Amy", "Stevens");
-const english1 = new Course("English 101", "English", 4);
-const chem1 = new Course("Chemistry 101", "Chemistry", 4);
-const chem2 = new Course("Chemistry 102", "Chemistry", 4);
+Course.prototype.conflictsWith = function(course){
+  let conflicts = false;
+  this.days.forEach((day) => {
+    if (course.days.includes(day) && this.timeBlock === course.timeBlock){
+      conflicts = true;
+    }
+  });
+  return conflicts;
+};
 
-amy.enroll(english1);
-console.log(english1.students);
+const amy = new Student("Amy", "Stevens");
+const english1 = new Course("English 101", "English", 4, ['mon', 'wed'], 2);
+const chem1 = new Course("Chemistry 101", "Chemistry", 4, ['mon', 'wed'], 1);
+const chem2 = new Course("Chemistry 102", "Chemistry", 4, ['mon', 'wed'], 1);
+
+console.log(chem1.conflictsWith(chem2));
 amy.enroll(chem1);
-amy.enroll(chem2);
-console.log(amy.courseLoad());
+amy.enroll(english1);
+console.log(amy.courses);
